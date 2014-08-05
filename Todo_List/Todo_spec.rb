@@ -60,32 +60,32 @@ end
 
 describe 'TodoList' do
   before do
-    list = Todolist.new
-    list.tasks = [Task.new, Task.new, Task.new]
+    @list = Todolist.new
+    @list.tasks = [Task.new, Task.new, Task.new]
   end
 
   describe '#initialize' do
     it 'should have a title' do
-      list.title = 'Title'
-      expect(list.title).to eq('Title')
+      @list.title = 'Title'
+      expect(@list.title).to eq('Title')
     end
 
     it 'should have many tasks' do
-      expect(list.tasks).to be_a Array
+      expect(@list.tasks).to be_a Array
     end
   end
 
 
   describe '#add_task' do
     it 'should add a task to list.tasks' do
-      expect{ list.add_task(Task.new) }.to change{ list.tasks.length }.by(1)
+      expect{ @list.add_task(Task.new) }.to change{ @list.tasks.length }.by(1)
     end
   end
 
   describe '#complete_all!' do
     it 'should complete all tasks in a Todo List' do
-      list.complete_all!
-      list.tasks.each do |task|
+      @list.complete_all!
+      @list.tasks.each do |task|
         expect(task.complete?).to eq(true)
       end
     end
@@ -93,24 +93,24 @@ describe 'TodoList' do
 
   describe '#complete?' do
     it 'should show if all the tasks are completed in a Todo List' do
-      list.complete_all
-      expect(list.complete?).to eq(true)
+      @list.complete_all!
+      expect(@list.complete?).to eq(true)
     end
   end
 
   describe '#completed_tasks' do
     it 'should return an array of completed tasks from a Todo list' do
-      expect(list.completed_tasks.length).to eq(0)
-      list.complete_all
-      expect(list.completed_tasks.length).to eq(list.tasks.length)
+      expect(@list.completed_tasks.length).to eq(0)
+      @list.complete_all!
+      expect(@list.completed_tasks.length).to eq(@list.tasks.length)
     end
   end
 
   describe '#incomplete_tasks' do
     it 'should return an array of incomplete tasks from a Todo list' do
-      expect(list.incomplete_tasks.length).to eq(list.task.length)
-      list.complete_all
-      expect(list.incomplete_tasks.length).to eq(0)
+      expect(@list.incomplete_tasks.length).to eq(@list.tasks.length)
+      @list.complete_all!
+      expect(@list.incomplete_tasks.length).to eq(0)
     end
   end
 end

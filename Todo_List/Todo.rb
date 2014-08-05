@@ -1,9 +1,9 @@
 class Task
-  attr_reader :title, :description, :status, :created_at
+  attr_accessor :title, :description, :status, :created_at
 
-  def initialize(hash)
-    @title = hash.fetch(:title)
-    @description = hash.fetch(:description)
+  def initialize(hash={})
+    @title = hash.fetch(:title, "Title")
+    @description = hash.fetch(:description, "Description")
     @status = hash.fetch(:status, "incomplete")
     @created_at = hash.fetch(:created_at, Time.now)
   end
@@ -22,7 +22,32 @@ class Task
 
 end
 
+class Todolist
+  attr_accessor :title, :tasks
+  def initialize()
+    @title = ""
+    @tasks = []
+  end
+  def add_task(task_obj)
+    @tasks << task_obj
+  end
+  def complete_all!
+    @tasks.each{
+      |task|
+      task.status = "complete"
+    }
+  end
+  def complete?
+    @tasks.map(&:status).include?("incomplete") ? false : true
+  end
 
-task = Task.new(:title => "Title", :description => "description", :status => "complete", :created_at => '0805951')
+  def completed_tasks
+    @tasks.select{ |task| task.status == "complete"}
+  end
 
-puts task.title
+  def incomplete_tasks
+    @tasks.select{ |task| task.status == "incomplete"}
+  end
+end
+
+
