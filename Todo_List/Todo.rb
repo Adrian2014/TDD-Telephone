@@ -2,10 +2,10 @@ class Task
   attr_reader :title, :description, :status, :created_at
 
   def initialize(hash)
-    @title = hash[:title]
-    @description = hash[:description]
-    @status = hash[:status]
-    @created_at = hash[:created_at]
+    @title = hash.fetch(:title)
+    @description = hash.fetch(:description)
+    @status = hash.fetch(:status, "incomplete")
+    @created_at = hash.fetch(:created_at, Time.now)
   end
 end
 
