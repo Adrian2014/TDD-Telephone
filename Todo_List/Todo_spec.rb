@@ -28,5 +28,10 @@ describe 'task' do
     expect(@taskII.status).to eq 'incomplete'
   end
 
+   it 'A tasks created_at timestamp should be automatically set on initialization'  do
+    @taskII = Task.new(:title => "Title", :description => "description")
+    expect(@taskII.created_at).not_to be_nil
+  end
+
 end
 
