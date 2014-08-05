@@ -73,3 +73,37 @@ RSpec.describe Pizza do
     end
   end
 end
+
+RSpec.describe Topping do
+  before do
+    @topping = Topping.new(name:"Salami",required_bake_time:40)
+  end
+
+  describe "#initialize" do
+    it "creates a topping object" do
+      expect(@topping).to be_a Topping
+    end
+    it "should return proper required_bake_time" do
+      expect(@topping.required_bake_time).to eq(40)
+    end
+    it "should return proper time_baked" do
+      expect(@topping.time_baked).to eq(0)
+    end
+  end
+  describe "#bake" do
+    it "should increment time_baked by the argument time" do
+      @topping.bake(4)
+      expect(@topping.time_baked).to eq (4)
+    end
+  end
+  describe "#baked?" do
+    it "baked? should be equal to false before 41 minutes" do
+      @topping.bake(11)
+      expect(@topping.baked?).to eq (false)
+    end
+    it "baked? should be equal to true after 41 minutes" do
+      @topping.bake(41)
+      expect(@topping.baked?).to eq (true)
+    end
+  end
+end
