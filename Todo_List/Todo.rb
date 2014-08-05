@@ -7,6 +7,19 @@ class Task
     @status = hash.fetch(:status, "incomplete")
     @created_at = hash.fetch(:created_at, Time.now)
   end
+
+  def mark_as_complete!
+    @status = "complete"
+  end
+
+  def mark_as_incomplete!
+    @status = "incomplete"
+  end
+
+  def complete?
+    @status == "complete" ? true : false
+  end
+
 end
 
 
