@@ -3,23 +3,23 @@ require_relative('Todo')
 describe 'task' do
 
   before do
-      task = Task.new(:title => "Title", :description => "description", :status => "complete", :created_at => '0805951')
+      @task = Task.new(:title => "Title", :description => "description", :status => "complete", :created_at => '0805951')
   end
 
   it 'A task should have attribute title'  do
-    expect(task.title).to be "Title"
+    expect(@task.title).to eq "Title"
   end
 
   it 'A task should have attribute description'  do
-    expect(task.description).to be "description"
+    expect(@task.description).to eq "description"
   end
 
   it 'A task should have attribute status'  do
-    expect(task.status).to be "complete"
+    expect(@task.status).to eq "complete"
   end
 
   it 'A task should have attribute status'  do
-    expect(task.created_at).to be '0805951'
+    expect(@task.created_at).to eq '0805951'
   end
 end
 
