@@ -34,10 +34,11 @@ RSpec.describe Pizza do
 
   describe "#bake" do
     it "should increment time_baked of the pizza by the argument time" do
-    @pizza.bake(40)
+      @pizza.bake(40)
       expect(@pizza.time_baked).to eq (40)
     end
     it "should increment time_baked of the toppings by the argument time" do
+      @pizza.bake(40)
       expect(@pizza.toppings[0].time_baked).to eq(40)
     end
 
@@ -47,7 +48,7 @@ RSpec.describe Pizza do
       expect(@pizza.baked?).to be false
     end
      it "should return true if pizza is baked" do
-      @pizza.bake(900)
+      @pizza.bake(940)
       expect(@pizza.baked?).to be true
     end
 
