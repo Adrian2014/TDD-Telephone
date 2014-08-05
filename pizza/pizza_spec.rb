@@ -47,38 +47,29 @@ RSpec.describe Pizza do
     it "should return false if pizza hasnt finished baking" do
       expect(@pizza.baked?).to be false
     end
-     it "should return true if pizza is baked" do
+    it "should return true if pizza is baked" do
       @pizza.bake(940)
       expect(@pizza.baked?).to be true
     end
 
   end
+
+  describe "#unfinished_toppings" do
+    it "should return an array of its toppings that have finished baking" do
+      expect(@pizza.finished_toppings.length).to be nil
+    end
+    it "should return an array of its toppings that have finished baking" do
+      @pizza.bake(15)
+      expect(@pizza.finished_toppings.length).to eq(0)
+    end
+  end
+  describe "#finished_toppings" do
+    it "should return an array of its toppings that have finished baking" do
+      expect(@pizza.finished_toppings.length).to be nil
+    end
+    it "should return an array of its toppings that have finished baking" do
+      @pizza.bake(45)
+      expect(@pizza.finished_toppings.length).to eq(2)
+    end
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
