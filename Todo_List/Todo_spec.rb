@@ -4,6 +4,7 @@ describe 'task' do
 
   before do
       @task = Task.new(:title => "Title", :description => "description", :status => "complete", :created_at => '0805951')
+      @taskII = Task.new(:title => "Title", :description => "description")
   end
 
   it 'should have attribute title'  do
@@ -24,19 +25,33 @@ describe 'task' do
 
 
   it 'should have a default status of incomplete'  do
-    @taskII = Task.new(:title => "Title", :description => "description", :created_at => '0805951')
     expect(@taskII.status).to eq 'incomplete'
   end
 
   it 'should automatically set a created_at timestamp on initialization'  do
-    @taskII = Task.new(:title => "Title", :description => "description")
     expect(@taskII.created_at).not_to be_nil
   end
 
-  it 'should have a method mark_as_complete! which sets its status to complete'
+  it 'should have a method mark_as_complete! which sets its status to complete' do
+    @taskII.mark_as_complete!
+    expect(@taskII.status).to eq 'complete'
+  end
 
-  it 'should have a method mark_as_incomplete! which sets its status to incomplete'
+  it 'should have a method mark_as_incomplete! which sets its status to incomplete' do
+    @taskII.mark_as_complete!
+    @taskII.mark_as_incomplete!
+    expect(@taskII.status).to eq 'incomplete'
+  end
 
-  it 'should have a method complete? which returns a boolean indicating whether or not it has been completed'
+  describe '#complete?' do
+    it 'should return false if the task has not been completed' do
+      expect(@taskII.complete?).to eq(false)
+    end
+
+    it 'should return true if the task has been completed' do
+      @taskII.mark_as_complete!
+      expect(@taskII.complete?).to eq(true)
+    end
+  end
 end
 
