@@ -28,7 +28,7 @@ RSpec.describe Pizza do
   end
   describe "#required_bake_time" do
     it "Checks for required bake time" do
-      expect(@pizza.require_bake_time).to eq (900+40)
+      expect(@pizza.required_bake_time).to eq (900+40)
     end
   end
 
@@ -56,16 +56,16 @@ RSpec.describe Pizza do
 
   describe "#unfinished_toppings" do
     it "should return an array of its toppings that have finished baking" do
-      expect(@pizza.finished_toppings.length).to be nil
+      expect(@pizza.unfinished_toppings.length).to eq(2)
     end
     it "should return an array of its toppings that have finished baking" do
-      @pizza.bake(15)
-      expect(@pizza.finished_toppings.length).to eq(0)
+      @pizza.bake(45)
+      expect(@pizza.unfinished_toppings.length).to eq(0)
     end
   end
   describe "#finished_toppings" do
     it "should return an array of its toppings that have finished baking" do
-      expect(@pizza.finished_toppings.length).to be nil
+      expect(@pizza.finished_toppings.length).to eq(0)
     end
     it "should return an array of its toppings that have finished baking" do
       @pizza.bake(45)
