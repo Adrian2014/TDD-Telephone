@@ -18,8 +18,15 @@ describe 'task' do
     expect(@task.status).to eq "complete"
   end
 
-  it 'A task should have attribute status'  do
+  it 'A task should have attribute created_at'  do
     expect(@task.created_at).to eq '0805951'
   end
+
+
+  it 'A task should have a default status of incomplete'  do
+    @taskII = Task.new(:title => "Title", :description => "description", :created_at => '0805951')
+    expect(@taskII.status).to eq 'incomplete'
+  end
+
 end
 
